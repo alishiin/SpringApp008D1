@@ -20,7 +20,7 @@ public class ReseñaController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody ReseñaModel reseña) {
         reseñaService.crearReseña(reseña);
-        return ResponseEntity.ok("✅ Reseña agregada correctamente.");
+        return ResponseEntity.ok("Reseña agregada correctamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class ReseñaController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = reseñaService.eliminarReseña(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Reseña eliminada exitosamente.");
+            return ResponseEntity.ok("Reseña eliminada exitosamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Reseña no encontrada.");
+            return ResponseEntity.badRequest().body("Reseña no encontrada.");
         }
     }
 }

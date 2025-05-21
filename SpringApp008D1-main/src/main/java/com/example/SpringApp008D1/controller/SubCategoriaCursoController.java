@@ -20,7 +20,7 @@ public class SubCategoriaCursoController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody SubCategoriaCursoModel subcategoria) {
         subCategoriaCursoService.crearSubCategoria(subcategoria);
-        return ResponseEntity.ok("🧩 Subcategoría de curso creada correctamente.");
+        return ResponseEntity.ok("Subcategoría de curso creada correctamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class SubCategoriaCursoController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = subCategoriaCursoService.eliminarSubCategoria(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Subcategoría eliminada exitosamente.");
+            return ResponseEntity.ok("Subcategoría eliminada exitosamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Subcategoría no encontrada.");
+            return ResponseEntity.badRequest().body("Subcategoría no encontrada.");
         }
     }
 }

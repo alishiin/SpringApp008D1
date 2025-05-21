@@ -11,7 +11,6 @@ public class InscripcionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Por simplicidad, solo IDs de curso y estudiante (puedes cambiar a relaciones si quieres)
     @Column(name = "curso_id", nullable = false)
     private Long cursoId;
 
@@ -21,10 +20,10 @@ public class InscripcionModel {
     @Column(name = "fecha_inscripcion")
     private LocalDate fechaInscripcion;
 
-    // Constructor vacío
+
     public InscripcionModel() {}
 
-    // Getters y setters
+
 
     public Long getId() {
         return id;

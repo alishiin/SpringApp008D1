@@ -20,7 +20,7 @@ public class SoporteController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody SoporteModel soporte) {
         soporteService.crearSoporte(soporte);
-        return ResponseEntity.ok("🛠️ Soporte registrado exitosamente.");
+        return ResponseEntity.ok("Soporte registrado exitosamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class SoporteController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = soporteService.eliminarSoporte(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Soporte eliminado correctamente.");
+            return ResponseEntity.ok("Soporte eliminado correctamente.");
         } else {
-            return ResponseEntity.badRequest().body(" Soporte no encontrado.");
+            return ResponseEntity.badRequest().body("Soporte no encontrado.");
         }
     }
 }

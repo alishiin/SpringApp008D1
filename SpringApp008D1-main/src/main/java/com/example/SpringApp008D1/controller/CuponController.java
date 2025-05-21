@@ -20,7 +20,7 @@ public class CuponController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody CuponModel cupon) {
         cuponService.crearCupon(cupon);
-        return ResponseEntity.ok("🏷️ Cupón creado correctamente.");
+        return ResponseEntity.ok("Cupón creado correctamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class CuponController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = cuponService.eliminarCupon(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Cupón eliminado correctamente.");
+            return ResponseEntity.ok("Cupón eliminado correctamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Cupón no encontrado.");
+            return ResponseEntity.badRequest().body("Cupón no encontrado.");
         }
     }
 }

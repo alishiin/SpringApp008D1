@@ -14,7 +14,6 @@ public class ProveedorModel {
     private String contacto;
     private String telefono;
 
-    // Getters y Setters
 
     public Long getId() {
         return id;

@@ -10,7 +10,7 @@ public class PermisoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre; // Ej: "GESTION_USUARIOS", "VER_REPORTES"
+    private String nombre;
 
     private String descripcion;
 

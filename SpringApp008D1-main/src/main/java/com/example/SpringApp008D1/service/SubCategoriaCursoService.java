@@ -12,38 +12,26 @@ public class SubCategoriaCursoService {
 
     private final SubCategoriaCursoRepository subCategoriaCursoRepository;
 
-    public SubCategoriaCursoService(SubCategoriaCursoRepository subCategoriaCursoRepository){
+    public SubCategoriaCursoService(SubCategoriaCursoRepository subCategoriaCursoRepository) {
         this.subCategoriaCursoRepository = subCategoriaCursoRepository;
     }
 
-    public List<SubCategoriaCursoModel> getAllSubCategorias() {
+    public String crearSubCategoria(SubCategoriaCursoModel subcategoria) {
+        subCategoriaCursoRepository.save(subcategoria);
+        return "Subcategoría creada correctamente.";
+    }
+
+    public List<SubCategoriaCursoModel> listarSubCategorias() {
         return subCategoriaCursoRepository.findAll();
     }
 
-    public Optional<SubCategoriaCursoModel> getSubCategoriaById(Long id) {
-        return subCategoriaCursoRepository.findById(id);
-    }
-
-    public SubCategoriaCursoModel saveSubCategoria(SubCategoriaCursoModel subCategoria) {
-        return subCategoriaCursoRepository.save(subCategoria);
-    }
-
-    public boolean updateSubCategoria(Long id, SubCategoriaCursoModel subCategoriaData) {
-        Optional<SubCategoriaCursoModel> subCategoriaOpt = subCategoriaCursoRepository.findById(id);
-        if (subCategoriaOpt.isPresent()) {
-            SubCategoriaCursoModel subCategoria = subCategoriaOpt.get();
-            subCategoria.setNombre(subCategoriaData.getNombre());
-            subCategoriaCursoRepository.save(subCategoria);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean deleteSubCategoria(Long id) {
-        if (subCategoriaCursoRepository.existsById(id)) {
+    public boolean eliminarSubCategoria(Long id) {
+        Optional<SubCategoriaCursoModel> subcategoria = subCategoriaCursoRepository.findById(id);
+        if (subcategoria.isPresent()) {
             subCategoriaCursoRepository.deleteById(id);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }

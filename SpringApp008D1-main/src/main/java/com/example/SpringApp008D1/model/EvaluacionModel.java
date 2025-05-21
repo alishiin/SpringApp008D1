@@ -13,7 +13,6 @@ public class EvaluacionModel {
     private String titulo;
     private String descripcion;
 
-    // Getters y Setters
 
     public Long getId() {
         return id;

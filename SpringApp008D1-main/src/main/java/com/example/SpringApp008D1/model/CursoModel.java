@@ -12,9 +12,9 @@ public class CursoModel {
 
     private String titulo;
     private String descripcion;
-    private String estado; // por ejemplo: publicado, en revisión, eliminado
+    private String estado;
 
-    // Getters y Setters
+
 
     public Long getId() {
         return id;

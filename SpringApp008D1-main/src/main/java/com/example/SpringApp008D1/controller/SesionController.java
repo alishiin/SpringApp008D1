@@ -20,7 +20,7 @@ public class SesionController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody SesionModel sesion) {
         sesionService.crearSesion(sesion);
-        return ResponseEntity.ok("🔐 Sesión registrada correctamente.");
+        return ResponseEntity.ok("Sesión registrada correctamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class SesionController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = sesionService.eliminarSesion(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Sesión eliminada correctamente.");
+            return ResponseEntity.ok("Sesión eliminada correctamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Sesión no encontrada.");
+            return ResponseEntity.badRequest().body("Sesión no encontrada.");
         }
     }
 }

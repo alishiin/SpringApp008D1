@@ -11,7 +11,7 @@ public class IncidenciaModel {
     private Long id;
 
     private String descripcion;
-    private String estado;  // abierto, en proceso, cerrado
+    private String estado;
     private String fechaReporte;
 
     // Getters y Setters

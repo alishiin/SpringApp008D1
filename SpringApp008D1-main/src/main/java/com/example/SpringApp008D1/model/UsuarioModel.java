@@ -9,13 +9,11 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String email;
     private String password;
-    private String rol; // admin, gerente, instructor, cliente
+    private String rol;
 
-    // Getters y Setters
 
     public Long getId() {
         return id;

@@ -20,7 +20,7 @@ public class CategoriaCursoController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody CategoriaCursoModel categoria) {
         categoriaCursoService.crearCategoria(categoria);
-        return ResponseEntity.ok("📚 Categoría de curso creada correctamente.");
+        return ResponseEntity.ok("Categoría de curso creada correctamente.");
     }
 
     @GetMapping
@@ -33,9 +33,9 @@ public class CategoriaCursoController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = categoriaCursoService.eliminarCategoria(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Categoría eliminada exitosamente.");
+            return ResponseEntity.ok("Categoría eliminada exitosamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Categoría no encontrada.");
+            return ResponseEntity.badRequest().body("Categoría no encontrada.");
         }
     }
 }

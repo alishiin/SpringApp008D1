@@ -18,7 +18,7 @@ public class SoporteModel {
 
     private String especialidad;
 
-    private String estado; // activo, inactivo, de turno, etc.
+    private String estado;
 
     public SoporteModel() {
     }

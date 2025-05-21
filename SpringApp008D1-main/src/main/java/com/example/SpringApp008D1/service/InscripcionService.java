@@ -32,11 +32,9 @@ public class InscripcionService {
         Optional<InscripcionModel> inscripcionOptional = inscripcionRepository.findById(id);
         if (inscripcionOptional.isPresent()) {
             InscripcionModel inscripcionExistente = inscripcionOptional.get();
-            // Aquí actualizas los campos que quieras (ejemplo):
             inscripcionExistente.setCursoId(nuevaInscripcion.getCursoId());
             inscripcionExistente.setEstudianteId(nuevaInscripcion.getEstudianteId());
             inscripcionExistente.setFechaInscripcion(nuevaInscripcion.getFechaInscripcion());
-            // Guarda cambios
             inscripcionRepository.save(inscripcionExistente);
             return true;
         }

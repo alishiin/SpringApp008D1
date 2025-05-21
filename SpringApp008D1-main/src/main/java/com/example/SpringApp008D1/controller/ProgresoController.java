@@ -20,7 +20,7 @@ public class ProgresoController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody ProgresoModel progreso) {
         progresoService.crearProgreso(progreso);
-        return ResponseEntity.ok("📈 Progreso registrado correctamente.");
+        return ResponseEntity.ok("Progreso registrado correctamente.");
     }
 
     @GetMapping
@@ -32,9 +32,9 @@ public class ProgresoController {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = progresoService.eliminarProgreso(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Progreso eliminado exitosamente.");
+            return ResponseEntity.ok("🗑Progreso eliminado exitosamente.");
         } else {
-            return ResponseEntity.badRequest().body("❌ Progreso no encontrado.");
+            return ResponseEntity.badRequest().body("Progreso no encontrado.");
         }
     }
 }

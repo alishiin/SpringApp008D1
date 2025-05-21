@@ -18,7 +18,7 @@ public class CursoService {
 
     public String crearCurso(CursoModel curso) {
         cursoRepository.save(curso);
-        return "✅ Curso agregado correctamente.";
+        return "Curso agregado correctamente.";
     }
 
     public List<CursoModel> listarCursos() {
@@ -29,9 +29,9 @@ public class CursoService {
         Optional<CursoModel> curso = cursoRepository.findById(id);
         if (curso.isPresent()) {
             cursoRepository.deleteById(id);
-            return "🗑️ Curso eliminado exitosamente.";
+            return "Curso eliminado exitosamente.";
         } else {
-            return "❌ Curso no encontrado.";
+            return "Curso no encontrado.";
         }
     }
 }
