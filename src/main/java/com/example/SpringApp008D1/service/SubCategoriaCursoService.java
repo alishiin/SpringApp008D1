@@ -35,5 +35,3 @@ public class SubCategoriaCursoService {
         }
     }
 }
-
-//esto es un cambio para que cuente y subirlo al repoositorio
