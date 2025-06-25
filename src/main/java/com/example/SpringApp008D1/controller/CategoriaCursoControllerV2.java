@@ -21,9 +21,9 @@ public class CategoriaCursoControllerV2 {
 
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody CategoriaCursoAssembler dto) {
-        CategoriaCursoModel model = CategoriaCursoModel.fromAssembler(dto); // Conversión de Assembler a Model
+        CategoriaCursoModel model = CategoriaCursoModel.fromAssembler(dto);
         categoriaCursoService.crearCategoria(model);
-        return ResponseEntity.ok("✅ Categoría creada correctamente. [v2]");
+        return ResponseEntity.ok("Categoría creada correctamente. [v2]");
     }
 
     @GetMapping
@@ -39,7 +39,7 @@ public class CategoriaCursoControllerV2 {
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         boolean eliminado = categoriaCursoService.eliminarCategoria(id);
         if (eliminado) {
-            return ResponseEntity.ok("🗑️ Categoría eliminada exitosamente. [v2]");
+            return ResponseEntity.ok("Categoría eliminada exitosamente. [v2]");
         } else {
             return ResponseEntity.status(404).body("Categoría no encontrada. [v2]");
         }

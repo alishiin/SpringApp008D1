@@ -5,6 +5,7 @@ import com.example.SpringApp008D1.repository.EvaluacionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EvaluacionService {
@@ -15,19 +16,32 @@ public class EvaluacionService {
         this.evaluacionRepository = evaluacionRepository;
     }
 
-    public EvaluacionModel crearEvaluacion(EvaluacionModel evaluacion) {
-        return evaluacionRepository.save(evaluacion);
+    public String crearEvaluacion(EvaluacionModel evaluacion) {
+        evaluacionRepository.save(evaluacion);
+        return "Evaluación creada exitosamente.";
     }
 
     public List<EvaluacionModel> listarEvaluaciones() {
         return evaluacionRepository.findAll();
     }
 
-    public boolean eliminarEvaluacion(Long id) {
+    public Optional<EvaluacionModel> obtenerEvaluacionPorId(Long id) {
+        return evaluacionRepository.findById(id);
+    }
+
+    public String actualizarEvaluacion(EvaluacionModel evaluacion) {
+        if (evaluacionRepository.existsById(evaluacion.getId())) {
+            evaluacionRepository.save(evaluacion);
+            return "Evaluación actualizada.";
+        }
+        return "Evaluación no encontrada.";
+    }
+
+    public String eliminarEvaluacion(Long id) {
         if (evaluacionRepository.existsById(id)) {
             evaluacionRepository.deleteById(id);
-            return true;
+            return "Evaluación eliminada.";
         }
-        return false;
+        return "Evaluación no encontrada.";
     }
 }

@@ -1,6 +1,7 @@
 package com.example.SpringApp008D1.model;
 
 import jakarta.persistence.*;
+import com.example.SpringApp008D1.assembler.CursoAssembler;
 
 @Entity
 @Table(name = "cursos")
@@ -46,5 +47,24 @@ public class CursoModel {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+
+    public CursoAssembler toAssembler() {
+        CursoAssembler assembler = new CursoAssembler();
+        assembler.setId(this.id);
+        assembler.setTitulo(this.titulo);
+        assembler.setDescripcion(this.descripcion);
+        assembler.setEstado(this.estado);
+        return assembler;
+    }
+
+    public static CursoModel fromAssembler(CursoAssembler assembler) {
+        CursoModel model = new CursoModel();
+        model.setId(assembler.getId());
+        model.setTitulo(assembler.getTitulo());
+        model.setDescripcion(assembler.getDescripcion());
+        model.setEstado(assembler.getEstado());
+        return model;
     }
 }

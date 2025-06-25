@@ -25,6 +25,10 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
+    public Optional<CursoModel> obtenerCursoPorId(Long id) {
+        return cursoRepository.findById(id);
+    }
+
     public String eliminarCurso(Long id) {
         Optional<CursoModel> curso = cursoRepository.findById(id);
         if (curso.isPresent()) {

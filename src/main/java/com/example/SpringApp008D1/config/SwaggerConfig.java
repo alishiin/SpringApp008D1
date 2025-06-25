@@ -12,7 +12,7 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Spring App REST API anashei")
+                        .title("Spring App REST API")
                         .version("1.0")
                         .description("Aplicacion REST API"));
     }

@@ -36,17 +36,4 @@ public class CuponService {
             return false;
         }
     }
-
-    public Optional<CuponModel> actualizarCupon(Long id, CuponModel cuponActualizado) {
-        Optional<CuponModel> cuponExistente = cuponRepository.findById(id);
-        if (cuponExistente.isPresent()) {
-            CuponModel cupon = cuponExistente.get();
-            cupon.setCodigo(cuponActualizado.getCodigo());
-            cupon.setDescuento(cuponActualizado.getDescuento());
-            CuponModel actualizado = cuponRepository.save(cupon);
-            return Optional.of(actualizado);
-        } else {
-            return Optional.empty();
-        }
-    }
 }

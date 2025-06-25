@@ -20,7 +20,7 @@ public class EvaluacionController {
     @PostMapping
     public ResponseEntity<String> crear(@RequestBody EvaluacionModel evaluacion) {
         evaluacionService.crearEvaluacion(evaluacion);
-        return ResponseEntity.ok("Evaluación agregada correctamente.");
+        return ResponseEntity.ok("Evaluación agregada.");
     }
 
     @GetMapping
@@ -31,11 +31,12 @@ public class EvaluacionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
-        boolean eliminado = evaluacionService.eliminarEvaluacion(id);
-        if (eliminado) {
-            return ResponseEntity.ok("Evaluación eliminada exitosamente.");
+        String mensaje = evaluacionService.eliminarEvaluacion(id);
+        if ("Evaluación eliminada.".equals(mensaje)) {
+            return ResponseEntity.ok(mensaje);
         } else {
-            return ResponseEntity.badRequest().body("Evaluación no encontrada.");
+            return ResponseEntity.badRequest().body(mensaje);
         }
     }
+
 }
