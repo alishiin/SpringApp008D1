@@ -1,18 +1,13 @@
 package com.example.SpringApp008D1.model;
 
-import jakarta.persistence.*;
+import com.example.SpringApp008D1.assembler.CategoriaCursoAssembler;
 
-@Entity
-@Table(name = "categoria_curso")
 public class CategoriaCursoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
 
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -28,4 +23,19 @@ public class CategoriaCursoModel {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public static CategoriaCursoModel fromAssembler(CategoriaCursoAssembler assembler) {
+        CategoriaCursoModel model = new CategoriaCursoModel();
+        model.setId(assembler.getId());
+        model.setNombre(assembler.getNombre());
+        return model;
+    }
+
+    public CategoriaCursoAssembler toAssembler() {
+        CategoriaCursoAssembler assembler = new CategoriaCursoAssembler();
+        assembler.setId(this.getId());
+        assembler.setNombre(this.getNombre());
+        return assembler;
+    }
 }
+
