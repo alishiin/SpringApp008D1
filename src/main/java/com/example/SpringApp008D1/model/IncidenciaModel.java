@@ -14,7 +14,6 @@ public class IncidenciaModel {
     private String estado;
     private String fechaReporte;
 
-    // Getters y Setters
 
     public Long getId() {
         return id;
