@@ -4,6 +4,9 @@ import com.example.SpringApp008D1.assembler.CuponAssembler;
 import com.example.SpringApp008D1.model.CuponModel;
 import com.example.SpringApp008D1.service.CuponService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,10 @@ public class CuponControllerV2 {
     private CuponService cuponService;
 
     @GetMapping
+    @Operation(summary = "Listar Cupones", description = "Obtiene una lista de cupones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista obtenida exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Lista no encontrada")})
     public ResponseEntity<List<CuponAssembler>> listarCupones() {
         List<CuponModel> cupones = cuponService.listarCupones();
         List<CuponAssembler> cuponesAssembler = cupones.stream()
@@ -31,6 +38,10 @@ public class CuponControllerV2 {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener cupon por id", description = "Obtiene un cupon especifico por id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "cupon obtenido exitosamente"),
+            @ApiResponse(responseCode = "400", description = "cupon no encontrado")})
     public ResponseEntity<CuponAssembler> obtenerCupon(@PathVariable Long id) {
         Optional<CuponModel> cuponOpt = cuponService.obtenerCuponPorId(id);
         return cuponOpt
@@ -39,6 +50,10 @@ public class CuponControllerV2 {
     }
 
     @PostMapping
+    @Operation(summary = "Crear cupon", description = "Crea cupones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cupon creado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Datos invalidos para crear cupon")})
     public ResponseEntity<CuponAssembler> crearCupon(@RequestBody CuponAssembler cuponAssembler) {
         CuponModel cuponModel = CuponModel.fromAssembler(cuponAssembler);
         CuponModel creado = cuponService.crearCupon(cuponModel);
@@ -46,6 +61,10 @@ public class CuponControllerV2 {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar cupon", description = "Actualiza un cupon en especifico")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cupon actualizado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Datos invalidos para actualizar cupon")})
     public ResponseEntity<CuponAssembler> actualizarCupon(@PathVariable Long id, @RequestBody CuponAssembler cuponAssembler) {
         Optional<CuponModel> existenteOpt = cuponService.obtenerCuponPorId(id);
         if (existenteOpt.isEmpty()) {
@@ -60,6 +79,10 @@ public class CuponControllerV2 {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar cupon", description = "Elimina un cupon en especifico")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cupon eliminado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Cupon no encontrado para eliminar")})
     public ResponseEntity<Void> eliminarCupon(@PathVariable Long id) {
         boolean eliminado = cuponService.eliminarCupon(id);
         if (eliminado) {
