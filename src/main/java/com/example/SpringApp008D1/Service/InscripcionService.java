@@ -1,47 +1,51 @@
-package com.example.SpringApp008D1.Service;
+package com.example.SpringApp008D1.service;
 
-import com.example.SpringApp008D1.Model.InscripcionModel;
-import com.example.SpringApp008D1.Repository.InscripcionRepository;
+import com.example.SpringApp008D1.model.InscripcionModel;
+import com.example.SpringApp008D1.repository.InscripcionRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class InscripcionService {
 
-    private final InscripcionRepository repository;
+    private final InscripcionRepository inscripcionRepository;
 
-    public InscripcionService(InscripcionRepository repository) {
-        this.repository = repository;
+    public InscripcionService(InscripcionRepository inscripcionRepository) {
+        this.inscripcionRepository = inscripcionRepository;
     }
 
-    public List<InscripcionModel> listar() {
-        return repository.findAll();
+    public List<InscripcionModel> getAllInscripciones() {
+        return inscripcionRepository.findAll();
     }
 
-    public InscripcionModel inscribir(Long usuarioId, Long cursoId) {
-        InscripcionModel inscripcion = new InscripcionModel(usuarioId, cursoId, LocalDate.now(), true);
-        return repository.save(inscripcion);
+    public Optional<InscripcionModel> getInscripcionById(Long id) {
+        return inscripcionRepository.findById(id);
     }
 
-    public Optional<InscripcionModel> obtener(Long id) {
-        return repository.findById(id);
+    public InscripcionModel saveInscripcion(InscripcionModel inscripcion) {
+        return inscripcionRepository.save(inscripcion);
     }
 
-    public void cancelar(Long id) {
-        repository.findById(id).ifPresent(inscripcion -> {
-            inscripcion.setActiva(false);
-            repository.save(inscripcion);
-        });
+    public boolean updateInscripcion(Long id, InscripcionModel nuevaInscripcion) {
+        Optional<InscripcionModel> inscripcionOptional = inscripcionRepository.findById(id);
+        if (inscripcionOptional.isPresent()) {
+            InscripcionModel inscripcionExistente = inscripcionOptional.get();
+            inscripcionExistente.setCursoId(nuevaInscripcion.getCursoId());
+            inscripcionExistente.setEstudianteId(nuevaInscripcion.getEstudianteId());
+            inscripcionExistente.setFechaInscripcion(nuevaInscripcion.getFechaInscripcion());
+            inscripcionRepository.save(inscripcionExistente);
+            return true;
+        }
+        return false;
     }
 
-    public List<InscripcionModel> listarPorUsuario(Long usuarioId) {
-        return repository.findByUsuarioId(usuarioId);
-    }
-
-    public List<InscripcionModel> listarPorCurso(Long cursoId) {
-        return repository.findByCursoId(cursoId);
+    public boolean deleteInscripcion(Long id) {
+        if (inscripcionRepository.existsById(id)) {
+            inscripcionRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

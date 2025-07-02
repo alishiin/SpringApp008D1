@@ -1,4 +1,4 @@
-package com.example.SpringApp008D1.Model;
+package com.example.SpringApp008D1.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -11,34 +11,49 @@ public class InscripcionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long usuarioId;
+    @Column(name = "curso_id", nullable = false)
     private Long cursoId;
+
+    @Column(name = "estudiante_id", nullable = false)
+    private Long estudianteId;
+
+    @Column(name = "fecha_inscripcion")
     private LocalDate fechaInscripcion;
-    private boolean activa;
+
 
     public InscripcionModel() {}
 
-    public InscripcionModel(Long usuarioId, Long cursoId, LocalDate fechaInscripcion, boolean activa) {
-        this.usuarioId = usuarioId;
-        this.cursoId = cursoId;
-        this.fechaInscripcion = fechaInscripcion;
-        this.activa = activa;
+
+
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public Long getCursoId() {
+        return cursoId;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setCursoId(Long cursoId) {
+        this.cursoId = cursoId;
+    }
 
-    public Long getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(Long usuarioId) { this.usuarioId = usuarioId; }
+    public Long getEstudianteId() {
+        return estudianteId;
+    }
 
-    public Long getCursoId() { return cursoId; }
-    public void setCursoId(Long cursoId) { this.cursoId = cursoId; }
+    public void setEstudianteId(Long estudianteId) {
+        this.estudianteId = estudianteId;
+    }
 
-    public LocalDate getFechaInscripcion() { return fechaInscripcion; }
-    public void setFechaInscripcion(LocalDate fechaInscripcion) { this.fechaInscripcion = fechaInscripcion; }
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
+    }
 
-    public boolean isActiva() { return activa; }
-    public void setActiva(boolean activa) { this.activa = activa; }
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
 }

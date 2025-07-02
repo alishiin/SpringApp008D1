@@ -1,23 +1,25 @@
-package com.example.SpringApp008D1.Model;
+package com.example.SpringApp008D1.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
-import java.util.Date;
-
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
+@Entity
 public class ContenidoModel {
-    private String idContenido;
-    private String nombre;
-    private String descripcion;
-    private Date fechacreacion;
-    private String estado;
-    private String categoria;
-    private String formato;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String titulo;
+    private String descripcion;
+    private String urlRecurso;
+
+    public Long getId() { return id; }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public String getUrlRecurso() { return urlRecurso; }
+    public void setUrlRecurso(String urlRecurso) { this.urlRecurso = urlRecurso; }
 }

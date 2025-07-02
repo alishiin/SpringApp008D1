@@ -1,66 +1,55 @@
-package com.example.SpringApp008D1.Controller;
+package com.example.SpringApp008D1.controller;
 
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.*;
-@RestController
-
-public class UsuarioController {
-=======
-import com.example.SpringApp008D1.Model.UsuarioModel;
-import com.example.SpringApp008D1.Service.UsuarioService;
+import com.example.SpringApp008D1.model.UsuarioModel;
+import com.example.SpringApp008D1.service.UsuarioService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
-    private final UsuarioService service;
+    private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService service) {
-        this.service = service;
+    public UsuarioController(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping
-<<<<<<< HEAD
-    public List<Usuario> listar() {
-=======
-    public List<UsuarioModel> listar() {
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
-        return service.listar();
+    public List<UsuarioModel> getAllUsuarios() {
+        return usuarioService.getAllUsuarios();
     }
 
     @GetMapping("/{id}")
-<<<<<<< HEAD
-    public Usuario obtener(@PathVariable Long id) {
-=======
-    public UsuarioModel obtener(@PathVariable Long id) {
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
-        return service.obtener(id);
+    public ResponseEntity<UsuarioModel> getUsuarioById(@PathVariable Long id) {
+        return usuarioService.getUsuarioById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-<<<<<<< HEAD
-    public Usuario crear(@RequestBody Usuario usuario) {
-=======
-    public UsuarioModel crear(@RequestBody UsuarioModel usuario) {
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
-        return service.crear(usuario);
+    public ResponseEntity<String> createUsuario(@RequestBody UsuarioModel usuario) {
+        usuarioService.saveUsuario(usuario);
+        return ResponseEntity.ok("Usuario agregado con éxito");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUsuario(@PathVariable Long id, @RequestBody UsuarioModel usuario) {
+        if (usuarioService.updateUsuario(id, usuario)) {
+            return ResponseEntity.ok("Usuario actualizado con éxito");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        service.eliminar(id);
+    public ResponseEntity<String> deleteUsuario(@PathVariable Long id) {
+        if (usuarioService.deleteUsuario(id)) {
+            return ResponseEntity.ok("Usuario eliminado con éxito");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-    @GetMapping("/existe/{id}")
-    public boolean existe(@PathVariable Long id) {
-        return service.existe(id);
-    }
-<<<<<<< HEAD
-
-=======
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
 }

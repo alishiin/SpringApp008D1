@@ -1,35 +1,19 @@
-package com.example.SpringApp008D1.Model;
+package com.example.SpringApp008D1.model;
 
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
-
+@Entity
+@Table(name = "usuarios")
 public class UsuarioModel {
-    private int idUsuario;
-    private String nombre;
-    private String email;
-    private String contrasena;
-    private String rolUsuario;
-=======
-public class UsuarioModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String email;
+    private String password;
+    private String rol;
 
-    public UsuarioModel() {}
-
-    public UsuarioModel(Long id, String nombre, String email) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-    }
 
     public Long getId() {
         return id;
@@ -54,5 +38,20 @@ public class UsuarioModel {
     public void setEmail(String email) {
         this.email = email;
     }
->>>>>>> 793816a (Agregando controller , model , service , repository sus respectivos atributos y sus relaciones...)
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

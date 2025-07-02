@@ -1,11 +1,8 @@
-package com.example.SpringApp008D1.Repository;
+package com.example.SpringApp008D1.repository;
 
-import com.example.SpringApp008D1.Model.UsuarioModel;
+import com.example.SpringApp008D1.model.UsuarioModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
-    Optional<UsuarioModel> findByEmail(String email);
-    boolean existsByEmail(String email);
 }
+

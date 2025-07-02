@@ -1,49 +1,55 @@
-package com.example.SpringApp008D1.Controller;
+package com.example.SpringApp008D1.controller;
 
-import com.example.SpringApp008D1.Model.InscripcionModel;
-import com.example.SpringApp008D1.Service.InscripcionService;
+import com.example.SpringApp008D1.model.InscripcionModel;
+import com.example.SpringApp008D1.service.InscripcionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/inscripciones")
 public class InscripcionController {
 
-    private final InscripcionService service;
+    private final InscripcionService inscripcionService;
 
-    public InscripcionController(InscripcionService service) {
-        this.service = service;
+    public InscripcionController(InscripcionService inscripcionService){
+        this.inscripcionService = inscripcionService;
     }
 
     @GetMapping
-    public List<InscripcionModel> listar() {
-        return service.listar();
-    }
-
-    @PostMapping
-    public InscripcionModel inscribir(@RequestParam Long usuarioId, @RequestParam Long cursoId) {
-        return service.inscribir(usuarioId, cursoId);
+    public List<InscripcionModel> getAllInscripciones() {
+        return inscripcionService.getAllInscripciones();
     }
 
     @GetMapping("/{id}")
-    public Optional<InscripcionModel> obtener(@PathVariable Long id) {
-        return service.obtener(id);
+    public ResponseEntity<InscripcionModel> getInscripcionById(@PathVariable Long id) {
+        return inscripcionService.getInscripcionById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{id}/cancelar")
-    public void cancelar(@PathVariable Long id) {
-        service.cancelar(id);
+    @PostMapping
+    public ResponseEntity<String> createInscripcion(@RequestBody InscripcionModel inscripcion) {
+        inscripcionService.saveInscripcion(inscripcion);
+        return ResponseEntity.ok("Inscripción agregada con éxito");
     }
 
-    @GetMapping("/usuario/{usuarioId}")
-    public List<InscripcionModel> listarPorUsuario(@PathVariable Long usuarioId) {
-        return service.listarPorUsuario(usuarioId);
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateInscripcion(@PathVariable Long id, @RequestBody InscripcionModel inscripcion) {
+        if (inscripcionService.updateInscripcion(id, inscripcion)) {
+            return ResponseEntity.ok("Inscripción actualizada con éxito");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/curso/{cursoId}")
-    public List<InscripcionModel> listarPorCurso(@PathVariable Long cursoId) {
-        return service.listarPorCurso(cursoId);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteInscripcion(@PathVariable Long id) {
+        if (inscripcionService.deleteInscripcion(id)) {
+            return ResponseEntity.ok("Inscripción eliminada con éxito");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
