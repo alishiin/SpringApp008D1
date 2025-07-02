@@ -3,6 +3,7 @@ package com.example.SpringApp008D1.controller;
 import com.example.SpringApp008D1.assembler.CategoriaCursoAssembler;
 import com.example.SpringApp008D1.model.CategoriaCursoModel;
 import com.example.SpringApp008D1.service.CategoriaCursoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/categorias")
+@Tag(name = "Categorías", description = "categorías de cursos")
 public class CategoriaCursoControllerV2 {
 
     private final CategoriaCursoService categoriaCursoService;

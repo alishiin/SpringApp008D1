@@ -5,7 +5,6 @@ public class EvaluacionAssembler {
     private String titulo;
     private String descripcion;
 
-    // Getters y setters
     public Long getId() {
         return id;
     }

@@ -4,6 +4,7 @@ import com.example.SpringApp008D1.assembler.CuponAssembler;
 import com.example.SpringApp008D1.model.CuponModel;
 import com.example.SpringApp008D1.service.CuponService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/cupones")
+@Tag(name = "cupon", description = "cupones para curso")
 public class CuponControllerV2 {
 
     @Autowired
